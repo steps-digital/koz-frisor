@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KOZ Frisør – Frisør og hudpleie på Tiller i Trondheim</title>
+  <meta name="description" content="KOZ by Kvithyll & Zimmerlund er en moderne frisørsalong midt på Tiller i Trondheim, med hudpleie i samme lokale. Ring 920 95 999 for å bestille time.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0b0b0a">
+  <link rel="icon" href="bilder/koz-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --svart: #0b0b0a;
+      --flate: #151513;
+      --flate-2: #1c1c19;
+      --tekst: #f3efe4;
+      --dempet: #a9a593;
+      --linje: rgba(243, 239, 228, 0.1);
+      --gull-1: #e2ecb6;
+      --gull-2: #f2e1a6;
+      --gull: linear-gradient(100deg, var(--gull-1), var(--gull-2));
+      --krem: #f5f1e6;
+      --blekk: #161613;
+      --font: "Jost", system-ui, sans-serif;
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --max: 1160px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      font-weight: 300;
+      background: var(--svart);
+      color: var(--tekst);
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--gull-2); outline-offset: 3px; }
+    .wrap { width: min(100% - 2.5rem, var(--max)); margin-inline: auto; }
+    .gull-tekst { background: var(--gull); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .serif { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: 0; text-transform: none; }
+
+    .forslag {
+      background: var(--gull);
+      color: var(--blekk);
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.45rem 1rem;
+    }
+    .forslag a { font-weight: 600; }
+
+    .topp {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(11, 11, 10, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--linje);
+    }
+    .topp-innhold { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 4.6rem; }
+    .logo img { height: 52px; width: auto; mix-blend-mode: screen; }
+    .meny { display: flex; align-items: center; gap: 1.8rem; }
+    .meny a:not(.knapp) {
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--dempet);
+      transition: color 0.2s;
+    }
+    .meny a:not(.knapp):hover { color: var(--tekst); }
+
+    .knapp {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      min-height: 3.1rem;
+      padding: 0.8rem 1.6rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font: inherit;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .knapp:hover { transform: translateY(-2px); }
+    .knapp--gull { background: var(--gull); color: var(--blekk); box-shadow: 0 10px 30px -12px rgba(242, 225, 166, 0.55); }
+    .knapp--gull:hover { box-shadow: 0 14px 34px -10px rgba(242, 225, 166, 0.7); }
+    .knapp--kant { border-color: rgba(243, 239, 228, 0.35); color: var(--tekst); }
+    .knapp--kant:hover { border-color: var(--gull-2); }
+    .knapp--liten { min-height: 2.6rem; padding: 0.5rem 1.2rem; font-size: 0.78rem; }
+    .knapp svg { width: 17px; height: 17px; flex: none; }
+
+    .hero {
+      position: relative;
+      min-height: min(88vh, 820px);
+      display: grid;
+      align-items: center;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .hero-bilde {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background: url("https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=2000&q=75") 75% 30% / cover;
+      transform: scale(1.08);
+      animation: zoom 18s ease-out forwards;
+    }
+    @keyframes zoom { to { transform: scale(1); } }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(90deg, rgba(11, 11, 10, 0.95) 0%, rgba(11, 11, 10, 0.75) 45%, rgba(11, 11, 10, 0.35) 100%),
+        linear-gradient(0deg, var(--svart) 0%, transparent 30%);
+    }
+    .hero-innhold { padding: 5rem 0; max-width: 40rem; }
+    .overtittel {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gull-2);
+      margin-bottom: 1.2rem;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.9rem, 6.6vw, 5.4rem);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      margin: 0 0 1.5rem;
+    }
+    h1 .serif { font-size: 1.12em; }
+    .ingress { font-size: 1.2rem; color: #d6d2c4; margin: 0 0 2.2rem; max-width: 32rem; }
+    .handlinger { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 2rem;
+      font-size: 0.92rem;
+      color: var(--dempet);
+    }
+    .status .prikk { width: 9px; height: 9px; border-radius: 50%; background: #6b6b60; }
+    .status.apen .prikk { background: #7ad59a; box-shadow: 0 0 0 0 rgba(122, 213, 154, 0.6); animation: puls 2s infinite; }
+    .status strong { color: var(--tekst); font-weight: 500; }
+    @keyframes puls { to { box-shadow: 0 0 0 10px rgba(122, 213, 154, 0); } }
+
+    .baand { border-block: 1px solid var(--linje); overflow: hidden; padding: 1.2rem 0; }
+    .baand-spor { display: flex; gap: 3rem; width: max-content; animation: rull 32s linear infinite; }
+    .baand span { font-size: 0.85rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--dempet); white-space: nowrap; display: inline-flex; align-items: center; gap: 3rem; }
+    .baand span::after { content: ""; width: 6px; height: 6px; transform: rotate(45deg); background: var(--gull); }
+    @keyframes rull { to { transform: translateX(-50%); } }
+
+    .seksjon { padding: 6.5rem 0; }
+    h2 {
+      font-weight: 400;
+      font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+      line-height: 1.08;
+      letter-spacing: -0.015em;
+      margin: 0 0 1rem;
+    }
+    h2 .serif { font-size: 1.12em; }
+    .seksjon-hode { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap; }
+    .seksjon-hode p { max-width: 26rem; color: var(--dempet); margin: 0; }
+
+    .tjenester { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; }
+    .tjeneste {
+      position: relative;
+      aspect-ratio: 3 / 4.2;
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      isolation: isolate;
+    }
+    .tjeneste img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform 0.8s; }
+    .tjeneste::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, transparent 35%, rgba(11, 11, 10, 0.92)); }
+    .tjeneste:hover img { transform: scale(1.07); }
+    .tjeneste-tekst { padding: 1.5rem; }
+    .tjeneste .nr { font-family: var(--serif); font-style: italic; font-size: 1.3rem; }
+    .tjeneste h3 { font-weight: 500; font-size: 1.3rem; margin: 0.2rem 0 0.4rem; letter-spacing: 0.01em; }
+    .tjeneste p { margin: 0; font-size: 0.95rem; color: #d0ccbd; }
+    .tjeneste--hud { outline: 1px solid rgba(242, 225, 166, 0.45); outline-offset: -1px; }
+    .merke {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: var(--gull);
+      color: var(--blekk);
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+    }
+
+    .om { background: var(--krem); color: var(--blekk); }
+    .om-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4.5rem; align-items: center; }
+    .om .overtittel { color: #8c7a3e; }
+    .om p { color: #4b4a42; font-weight: 400; }
+    .om-bilder { position: relative; }
+    .om-bilder .stor { border-radius: 24px; aspect-ratio: 4 / 5; object-fit: cover; width: 85%; }
+    .om-bilder .liten {
+      position: absolute;
+      right: 0;
+      bottom: -2rem;
+      width: 46%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 20px;
+      border: 8px solid var(--krem);
+    }
+    .logo-kort {
+      position: absolute;
+      left: -1.2rem;
+      top: 2rem;
+      background: var(--svart);
+      border-radius: 18px;
+      padding: 0.9rem 1.1rem;
+      box-shadow: 0 20px 40px -18px rgba(0, 0, 0, 0.5);
+    }
+    .logo-kort img { width: 120px; mix-blend-mode: screen; }
+    .fakta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.2rem; padding-top: 2rem; border-top: 1px solid rgba(22, 22, 19, 0.12); }
+    .fakta strong { display: block; font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 2rem; line-height: 1.1; color: var(--blekk); }
+    .fakta span { font-size: 0.88rem; color: #6a685d; }
+
+    .sitat { text-align: center; padding: 6rem 0; }
+    .sitat blockquote {
+      margin: 0 auto;
+      max-width: 22ch;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(2rem, 4.2vw, 3.2rem);
+      line-height: 1.2;
+    }
+    .sitat .kilde { margin-top: 1.4rem; color: var(--dempet); font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; }
+    .stjerner { display: flex; justify-content: center; gap: 0.35rem; margin-bottom: 1.6rem; }
+    .stjerner svg { width: 18px; height: 18px; fill: var(--gull-2); }
+
+    .info-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 1.25rem; }
+    .kort { background: var(--flate); border: 1px solid var(--linje); border-radius: 24px; padding: 2.2rem; }
+    .tider { list-style: none; margin: 1.5rem 0 0; padding: 0; }
+    .tider li { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--linje); color: var(--dempet); }
+    .tider li:last-child { border-bottom: 0; }
+    .tider li.i-dag { color: var(--tekst); }
+    .tider li.i-dag span:first-child::after { content: "I dag"; margin-left: 0.7rem; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; background: var(--gull); color: var(--blekk); padding: 0.15rem 0.55rem; border-radius: 999px; font-weight: 600; vertical-align: 2px; }
+    .kontakt-liste { list-style: none; padding: 0; margin: 1.5rem 0 2rem; display: grid; gap: 1rem; }
+    .kontakt-liste a, .kontakt-liste span { text-decoration: none; display: flex; gap: 0.9rem; align-items: center; }
+    .kontakt-liste a:hover { color: var(--gull-2); }
+    .ikon { width: 42px; height: 42px; border-radius: 12px; border: 1px solid var(--linje); display: grid; place-items: center; flex: none; }
+    .ikon svg { width: 19px; height: 19px; stroke: var(--gull-2); }
+    .kart { border-radius: 18px; overflow: hidden; border: 1px solid var(--linje); height: 260px; }
+    .kart iframe { width: 100%; height: 100%; border: 0; filter: grayscale(1) invert(0.92) contrast(0.9); }
+
+    .bunn { border-top: 1px solid var(--linje); padding: 3rem 0 6rem; color: var(--dempet); font-size: 0.9rem; }
+    .bunn-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1.5rem; align-items: center; }
+    .bunn img { height: 64px; mix-blend-mode: screen; }
+
+    .ring-mobil { display: none; }
+
+    .vis { opacity: 0; transform: translateY(26px); transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1); }
+    .vis.synlig { opacity: 1; transform: none; }
+    .ingen-js .vis { opacity: 1; transform: none; }
+
+    @media (max-width: 1000px) {
+      .tjenester { grid-template-columns: repeat(2, 1fr); }
+      .om-grid, .info-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .meny a:not(.knapp) { display: none; }
+    }
+    @media (max-width: 600px) {
+      .logo img { height: 44px; }
+      .tjenester { grid-template-columns: 1fr; }
+      .tjeneste { aspect-ratio: 4 / 3.4; }
+      .seksjon { padding: 4.5rem 0; }
+      .fakta strong { font-size: 1.6rem; }
+      .meny .knapp { display: none; }
+      .ring-mobil {
+        display: flex;
+        position: fixed;
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+        z-index: 50;
+        width: auto;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .vis { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body class="ingen-js">
+  <div class="forslag">Forslag til ny nettside for KOZ Frisør, laget av <a href="https://steps-digital.github.io" target="_blank" rel="noopener">Steps</a></div>
+
+  <header class="topp">
+    <div class="wrap topp-innhold">
+      <a class="logo" href="#" aria-label="KOZ Frisør – til toppen"><img src="bilder/koz-logo.png" alt="KOZ by Kvithyll &amp; Zimmerlund"></a>
+      <nav class="meny" aria-label="Meny">
+        <a href="#tjenester">Tjenester</a>
+        <a href="#om">Om oss</a>
+        <a href="#besok">Åpningstider</a>
+        <a class="knapp knapp--gull knapp--liten" href="tel:+4792095999">Bestill time</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-bilde" aria-hidden="true"></div>
+      <div class="wrap">
+        <div class="hero-innhold">
+          <span class="overtittel">Frisør og hudpleie · Tiller, Trondheim</span>
+          <h1>Moderne hår.<br><span class="serif gull-tekst">Koselig</span> stemning.</h1>
+          <p class="ingress">KOZ er en moderne frisørsalong midt på Tiller. Her får du god tid, ærlige råd og en frisyre du trives med, lenge etter at du har gått ut døra.</p>
+          <div class="handlinger">
+            <a class="knapp knapp--gull" href="tel:+4792095999">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+              Ring 920 95 999
+            </a>
+            <a class="knapp knapp--kant" href="#besok">Åpningstider</a>
+          </div>
+          <p class="status" id="status" aria-live="polite"><span class="prikk"></span><span>Se åpningstider lenger ned</span></p>
+        </div>
+      </div>
+    </section>
+
+    <div class="baand" aria-hidden="true">
+      <div class="baand-spor">
+        <span>Klipp</span><span>Farge</span><span>Styling</span><span>Hudpleie</span><span>Tiller</span><span>Trondheim</span>
+        <span>Klipp</span><span>Farge</span><span>Styling</span><span>Hudpleie</span><span>Tiller</span><span>Trondheim</span>
+      </div>
+    </div>
+
+    <section class="seksjon" id="tjenester">
+      <div class="wrap">
+        <div class="seksjon-hode vis">
+          <div>
+            <span class="overtittel">Tjenester</span>
+            <h2>Alt for hår og hud,<br><span class="serif gull-tekst">på ett sted.</span></h2>
+          </div>
+          <p>Fortell oss hva du ønsker, så finner vi løsningen sammen. Ring for å høre om priser og ledige timer.</p>
+        </div>
+        <div class="tjenester">
+          <article class="tjeneste vis">
+            <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=700&q=75" alt="Frisør føner håret til en kunde" loading="lazy">
+            <div class="tjeneste-tekst">
+              <span class="nr gull-tekst">01</span>
+              <h3>Klipp</h3>
+              <p>Dame- og herreklipp, tilpasset deg, håret ditt og hverdagen din.</p>
+            </div>
+          </article>
+          <article class="tjeneste vis">
+            <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=700&q=75" alt="Langt hår i lilla nyanser" loading="lazy">
+            <div class="tjeneste-tekst">
+              <span class="nr gull-tekst">02</span>
+              <h3>Farge</h3>
+              <p>Fra naturlige nyanser og striper til en helt ny farge.</p>
+            </div>
+          </article>
+          <article class="tjeneste vis">
+            <img src="https://images.unsplash.com/photo-1560869713-7d0a29430803?auto=format&fit=crop&w=700&q=75" alt="Frisør lager krøller med krølltang" loading="lazy">
+            <div class="tjeneste-tekst">
+              <span class="nr gull-tekst">03</span>
+              <h3>Styling</h3>
+              <p>Føn, krøller og frisyrer til hverdag og spesielle anledninger.</p>
+            </div>
+          </article>
+          <article class="tjeneste tjeneste--hud vis">
+            <span class="merke">I samme lokale</span>
+            <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=700&q=75" alt="Kunde får ansiktsbehandling" loading="lazy">
+            <div class="tjeneste-tekst">
+              <span class="nr gull-tekst">04</span>
+              <h3>Hudpleie</h3>
+              <p>Hudpleier Cleanse Body &amp; Face holder til hos oss. Kombiner hår og hud på samme besøk.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="seksjon om" id="om">
+      <div class="wrap om-grid">
+        <div class="om-bilder vis">
+          <img class="stor" src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?auto=format&fit=crop&w=900&q=75" alt="Moderne frisørsalong med runde speil" loading="lazy">
+          <img class="liten" src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?auto=format&fit=crop&w=500&h=500&q=75" alt="Hårvask i salongen" loading="lazy">
+          <div class="logo-kort"><img src="bilder/koz-logo.png" alt=""></div>
+        </div>
+        <div class="vis">
+          <span class="overtittel">Om KOZ</span>
+          <h2>To navn,<br><span class="serif">én salong.</span></h2>
+          <p>Navnet sier det meste: KOZ står for Kvithyll og Zimmerlund, som startet salongen sammen på Tiller i 2023. Tanken var enkel. En moderne salong der det er like viktig at du trives i stolen som at resultatet blir bra.</p>
+          <p>Hos oss skal det føles som å stikke innom noen du kjenner. Vi tar oss tid til å høre hva du ønsker, gir deg ærlige råd og sørger for at du går hjem fornøyd.</p>
+          <div class="fakta">
+            <div><strong>2023</strong><span>Åpnet på Tiller</span></div>
+            <div><strong>Hår + hud</strong><span>I samme lokale</span></div>
+            <div><strong>6 dager</strong><span>Åpent i uka</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sitat">
+      <div class="wrap vis">
+        <div class="stjerner" aria-label="5 av 5 stjerner">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+        </div>
+        <blockquote>«Endelig tilbake til yndlingsfrisøren min. Kjempefornøyd med klippen hos Vicky.»</blockquote>
+        <p class="kilde">Fra en kunde på Google</p>
+      </div>
+    </section>
+
+    <section class="seksjon" id="besok" style="padding-top:1rem">
+      <div class="wrap">
+        <div class="seksjon-hode vis">
+          <div>
+            <span class="overtittel">Besøk oss</span>
+            <h2>Velkommen innom<br><span class="serif gull-tekst">på Tiller.</span></h2>
+          </div>
+        </div>
+        <div class="info-grid">
+          <div class="kort vis">
+            <h3 style="margin:0;font-weight:500;font-size:1.3rem">Åpningstider</h3>
+            <ul class="tider" id="tider">
+              <li data-dag="1"><span>Mandag</span><span>09.00–16.00</span></li>
+              <li data-dag="2"><span>Tirsdag</span><span>09.00–19.00</span></li>
+              <li data-dag="3"><span>Onsdag</span><span>09.00–16.00</span></li>
+              <li data-dag="4"><span>Torsdag</span><span>09.00–19.00</span></li>
+              <li data-dag="5"><span>Fredag</span><span>09.00–16.00</span></li>
+              <li data-dag="6"><span>Lørdag</span><span>09.00–14.00</span></li>
+              <li data-dag="0"><span>Søndag</span><span>Stengt</span></li>
+            </ul>
+          </div>
+          <div class="kort vis">
+            <h3 style="margin:0;font-weight:500;font-size:1.3rem">Kontakt og adresse</h3>
+            <ul class="kontakt-liste">
+              <li><a href="tel:+4792095999"><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span>920 95 999</a></li>
+              <li><a href="mailto:kozfrisor@hotmail.com"><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>kozfrisor@hotmail.com</a></li>
+              <li><a href="https://www.google.com/maps/search/?api=1&query=Torvmyra+2,+7091+Tiller" target="_blank" rel="noopener"><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span>Torvmyra 2, 7091 Tiller</a></li>
+              <li><a href="https://www.facebook.com/kozfrisor" target="_blank" rel="noopener"><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h-2.5A4.5 4.5 0 0 0 8 7.5V10H5.5v3.5H8V21h3.5v-7.5H14l.7-3.5h-3.2V7.8c0-.7.6-1.3 1.3-1.3H15z"/></svg></span>Følg oss på Facebook</a></li>
+            </ul>
+            <div class="kart">
+              <iframe src="https://www.google.com/maps?q=Torvmyra%202%2C%207091%20Tiller&z=15&output=embed" title="Kart som viser KOZ Frisør i Torvmyra 2 på Tiller" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bunn">
+    <div class="wrap bunn-grid">
+      <img src="bilder/koz-logo.png" alt="KOZ by Kvithyll &amp; Zimmerlund">
+      <span>&copy; <span id="aar">2026</span> KOZ Frisør AS · Org.nr. 930 663 484</span>
+      <span>Nettside laget av <a href="https://steps-digital.github.io" target="_blank" rel="noopener">Steps</a></span>
+    </div>
+  </footer>
+
+  <a class="knapp knapp--gull ring-mobil" href="tel:+4792095999">Ring og bestill time</a>
+
+  <script>
+    document.body.classList.remove('ingen-js');
+    document.getElementById('aar').textContent = new Date().getFullYear();
+
+    const apningstider = { 0: null, 1: [9, 16], 2: [9, 19], 3: [9, 16], 4: [9, 19], 5: [9, 16], 6: [9, 14] };
+    const navn = ['søndag', 'mandag', 'tirsdag', 'onsdag', 'torsdag', 'fredag', 'lørdag'];
+    const naa = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Oslo' }));
+    const dag = naa.getDay();
+    const time = naa.getHours() + naa.getMinutes() / 60;
+    const iDag = apningstider[dag];
+
+    document.querySelector(`#tider li[data-dag="${dag}"]`)?.classList.add('i-dag');
+
+    const status = document.getElementById('status');
+    const tekst = status.querySelector('span:last-child');
+    if (iDag && time >= iDag[0] && time < iDag[1]) {
+      status.classList.add('apen');
+      tekst.innerHTML = `<strong>Åpent nå</strong> · stenger kl. ${iDag[1]}.00`;
+    } else {
+      let neste = dag;
+      let tid = iDag && time < iDag[0] ? iDag : null;
+      if (!tid) {
+        for (let i = 1; i <= 7; i++) {
+          neste = (dag + i) % 7;
+          if (apningstider[neste]) { tid = apningstider[neste]; break; }
+        }
+      }
+      const naar = neste === dag ? 'i dag' : neste === (dag + 1) % 7 ? 'i morgen' : `på ${navn[neste]}`;
+      tekst.innerHTML = `<strong>Stengt nå</strong> · åpner ${naar} kl. 0${tid[0]}.00`;
+    }
+
+    const observer = new IntersectionObserver((oppforinger) => {
+      oppforinger.forEach((o) => {
+        if (o.isIntersecting) { o.target.classList.add('synlig'); observer.unobserve(o.target); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.vis').forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
